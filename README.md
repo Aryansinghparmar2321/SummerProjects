@@ -56,7 +56,7 @@ Ideas to extend: add technical indicators (RSI, MACD, Bollinger
 Bands), try an LSTM/GRU for sequence modeling, or predict direction
 (up/down) as a classification problem instead of exact price.
 
-                                          Project: 2.Chatbot for Customer Service
+                                     Project: 2.Chatbot for Customer Service
 
 A customer service chatbot that answers common queries (orders, returns,
 shipping, payments, account help, business hours, escalation to a human).
