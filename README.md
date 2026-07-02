@@ -56,4 +56,66 @@ Ideas to extend: add technical indicators (RSI, MACD, Bollinger
 Bands), try an LSTM/GRU for sequence modeling, or predict direction
 (up/down) as a classification problem instead of exact price.
 
-Project: 2.
+Project: 2.Chatbot for Customer Service
+
+A customer service chatbot that answers common queries (orders, returns,
+shipping, payments, account help, business hours, escalation to a human).
+Implements both approaches mentioned in the brief so you can compare
+them directly:
+
+
+Rule-based: keyword/word-overlap matching against known patterns.
+Simple NLP-based: TF-IDF vectorization + cosine similarity, which
+generalizes to rephrased questions the rule-based version misses.
+
+
+Files
+
+
+intents.json — the knowledge base: each "intent" (order status, returns,
+shipping, etc.) has example phrasings and one or more responses.
+chatbot.py — both chatbot engines + a CLI to chat interactively or run
+a side-by-side demo.
+
+
+Run it
+
+bashpip install scikit-learn
+
+# Chat interactively (NLP mode by default)
+python chatbot.py
+
+# Chat interactively using the simpler rule-based engine
+python chatbot.py --mode rule
+
+# See both engines respond to the same sample questions side by side
+python chatbot.py --demo
+
+Type quit to exit an interactive session.
+
+Why include both approaches?
+
+This is the most instructive part of the project. Run --demo and you'll
+see cases like:
+
+User saysRule-basedNLP-based (TF-IDF)"where's my package"fails (no shared keywords with training patterns)correctly identifies order_status"what time do you guys open"failscorrectly identifies business_hours"what's the meaning of life"correctly falls backcorrectly falls back
+
+The rule-based bot only recognizes phrasing close to what you explicitly
+listed in intents.json. The NLP-based bot, using TF-IDF, can match a
+rephrased question to the right intent because it scores word
+importance, not just exact overlap — words that appear across many
+patterns (like "the", "is", "my") are downweighted automatically, so
+distinctive words (like "package", "refund", "declined") drive the match.
+Both filter out common stopwords before scoring so generic words don't
+cause false-positive matches.
+
+Extending it
+
+
+Add more intents/patterns to intents.json — no code changes needed.
+Swap in a real dataset of past support tickets to auto-generate patterns.
+Add slot-filling (e.g. actually capture an order number when the user
+mentions order_status).
+Upgrade the NLP engine further with sentence embeddings (e.g.
+sentence-transformers) for even better semantic matching than TF-IDF.
+Wire it up to a real chat widget (Flask/FastAPI backend + simple frontend).
