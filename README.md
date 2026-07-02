@@ -1,4 +1,4 @@
-Stock Price Predictor
+ Project: 1.Stock Price Predictor
 
 Predicts a stock's next-day closing price from historical OHLCV
 (Open/High/Low/Close/Volume) data.
@@ -55,3 +55,5 @@ worth mentioning R² isn't the whole story here.
 Ideas to extend: add technical indicators (RSI, MACD, Bollinger
 Bands), try an LSTM/GRU for sequence modeling, or predict direction
 (up/down) as a classification problem instead of exact price.
+
+Project: 2.
